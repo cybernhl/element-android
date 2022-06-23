@@ -1259,6 +1259,8 @@ class TimelineFragment @Inject constructor(
         val nonFormattedBody = when (messageContent) {
             is MessageAudioContent -> getAudioContentBodyText(messageContent)
             is MessagePollContent -> messageContent.getBestPollCreationInfo()?.question?.getBestQuestion()
+            // TODO remove if it can be done in getLastMessageContent()
+            is MessageBeaconInfoContent -> event.annotations?.liveLocationShareAggregatedSummary?.lastLocationDataContent?.body.orEmpty()
             else -> messageContent?.body.orEmpty()
         }
         var formattedBody: CharSequence? = null

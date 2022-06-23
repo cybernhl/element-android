@@ -141,6 +141,7 @@ fun TimelineEvent.getLastMessageContent(): MessageContent? {
     return when (root.getClearType()) {
         EventType.STICKER -> root.getClearContent().toModel<MessageStickerContent>()
         in EventType.POLL_START -> (annotations?.editSummary?.latestContent ?: root.getClearContent()).toModel<MessagePollContent>()
+        // TODO how to edit without bugs on timeline factory?
         in EventType.STATE_ROOM_BEACON_INFO -> (annotations?.editSummary?.latestContent ?: root.getClearContent()).toModel<MessageBeaconInfoContent>()
         in EventType.BEACON_LOCATION_DATA -> (annotations?.editSummary?.latestContent ?: root.getClearContent()).toModel<MessageBeaconLocationDataContent>()
         else -> (annotations?.editSummary?.latestContent ?: root.getClearContent()).toModel()

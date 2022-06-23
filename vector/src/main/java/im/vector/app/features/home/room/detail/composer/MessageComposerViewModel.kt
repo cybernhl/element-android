@@ -531,6 +531,7 @@ class MessageComposerViewModel @AssistedInject constructor(
                     popDraft()
                 }
                 is SendMode.Reply -> {
+                    // TODO extract in ReplyToMessageUseCase with unit tests?
                     val timelineEvent = state.sendMode.timelineEvent
                     val showInThread = state.sendMode.timelineEvent.root.isThread() && state.rootThreadEventId == null
                     // If threads are disabled this will make the fallback replies visible to clients with threads enabled
